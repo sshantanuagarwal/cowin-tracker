@@ -18,6 +18,12 @@ if 'window' in platform:
     is_windows = True
 
 
+def speakPls(data):
+           if is_windows:
+               speak.Speak(str(data))
+           else:
+               os.system('{} "{}"'.format(speech_dispatcher, data))
+
 # Tomorrow
 tomorrow = datetime.today() + timedelta(1)
 tomorrow = tomorrow.strftime("%d-%m-%Y")
@@ -53,10 +59,6 @@ while not done:
     if pincodes:
        for pincode in pincodes:
            print (pincode)
-           if is_windows:
-               speak.Speak(str(pincode))
-           else:
-               os.system('{} "{}"'.format(speech_dispatcher, pincode))
+           speakPls(pincode)
     time.sleep(10)
-    
 os.system('{} "your program has finished"'.format(speech_dispatcher))
